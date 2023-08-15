@@ -1,16 +1,16 @@
 NAME=megaphone
-CC=c++
-CFLAGS=-Wall -Wextra -Werror -std=c++98
+CXX=c++
+CXXLAGS=-Wall -Wextra -Werror -std=c++98
 SRC=megaphone.cpp
 OBJ=$(SRC:.cpp=.o)
 
 .PHONY= all clean fclean re
 
 %.o:%.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXLAGS) -c $< -o $@
 
 $(NAME):$(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXLAGS) $(OBJ) -o $(NAME)
 
 all:$(NAME)
 
