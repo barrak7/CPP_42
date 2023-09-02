@@ -75,7 +75,7 @@ int Contact::set_number(std::string number){
 }
 
 std::string Contact::get_number(void){
-	return (first_name);
+	return (phone_number);
 }
 
 void Contact::set_secret(std::string secret){

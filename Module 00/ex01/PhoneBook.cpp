@@ -65,7 +65,6 @@ void PhoneBook::add(void) {
 	}
 	contact[i % 8].set_secret(prompt);
 	i++;
-	std::cout << i << "\n";
 }
 
 void PhoneBook::print_contact(Contact c){
