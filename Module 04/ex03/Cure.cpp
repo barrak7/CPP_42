@@ -1,19 +1,20 @@
 #include "Cure.hpp"
 
 Cure::Cure(){
-    type = "cure";  
+    type = "cure";   
 }
 
-Cure::Cure(std::string const & name){
+Cure::Cure(std::string const & name): AMateria(name) { 
     type = "cure";
 }
 
-Cure::Cure(AMateria& obj){
+Cure::Cure(AMateria& obj): AMateria(obj){
     type = "cure";
 }
 
 Cure& Cure::operator=(AMateria& obj){
-    type = "cure";
+    std::cout << "copied a" << obj.getType() << "!" << std::endl;
+    type = "cure";  
     return *this;
 }
 
@@ -24,5 +25,5 @@ AMateria* Cure::clone() const{
 }
 
 void Cure::use(ICharacter & obj){
-    std::cout << "Cure: \"* heals "<< obj.getName() <<"'s wounds *\"\n";
+    std::cout << "* heals "<< obj.getName() <<"'s wounds *\n";
 }

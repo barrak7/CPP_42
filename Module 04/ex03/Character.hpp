@@ -6,7 +6,7 @@
 #include "Cure.hpp"
 
 typedef struct trash {
-    void *ptr;
+    AMateria *ptr;
     struct trash *next;
 } t_trash;
 
