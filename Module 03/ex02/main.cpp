@@ -11,5 +11,6 @@ int main(void){
     a.takeDamage(5);
     a.beRepaired(5);
     d.attack("a");
+    d.highFivesGuys();
     return (0);
 }
