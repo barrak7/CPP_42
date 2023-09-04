@@ -14,16 +14,16 @@ class Fixed{
 
         //operator overloading
         Fixed& operator=(const Fixed& other);
-        bool    operator>(const Fixed& obj);
-        bool    operator<(const Fixed& obj);
-        bool    operator>=(const Fixed& obj);
-        bool    operator<=(const Fixed& obj);
-        bool    operator==(const Fixed& obj);
-        bool    operator!=(const Fixed& obj);
-        Fixed   operator+(const Fixed& obj);
-        Fixed   operator-(const Fixed& obj);
-        Fixed   operator*(const Fixed& obj);
-        Fixed   operator/(const Fixed& obj);
+        bool    operator>(const Fixed& obj) const;
+        bool    operator<(const Fixed& obj) const;
+        bool    operator>=(const Fixed& obj) const;
+        bool    operator<=(const Fixed& obj) const;
+        bool    operator==(const Fixed& obj) const;
+        bool    operator!=(const Fixed& obj) const;
+        Fixed   operator+(const Fixed& obj) const;
+        Fixed   operator-(const Fixed& obj) const;
+        Fixed   operator*(const Fixed& obj) const;
+        Fixed   operator/(const Fixed& obj) const;
 
         //destructor
         ~Fixed();
@@ -37,8 +37,6 @@ class Fixed{
         void setRawBits(int const raw);
 
         //min & max
-        static Fixed& min(Fixed& f1, Fixed& f2);
-        static Fixed& max(Fixed& f1, Fixed& f2);
         static const Fixed& min(const Fixed& f1, const Fixed& f2);
         static const Fixed& max(const Fixed& f1, const Fixed& f2);
         

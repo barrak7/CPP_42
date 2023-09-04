@@ -4,7 +4,7 @@ const int Fixed::fraction = 8;
 
 Fixed::Fixed(const int n){
     std::cout << "Int constructor called\n";
-    fixed = n * (1 << fraction);
+    fixed = n << fraction;
 }
 
 Fixed::Fixed(const float n){
@@ -32,8 +32,8 @@ Fixed::~Fixed(){
     std::cout << "Destructor called\n";
 }
 
-void Fixed::setRawBits(int i){
-    fixed = i;
+void Fixed::setRawBits(int n){
+    fixed = n;
 }
  
 int Fixed::getRawBits(void) const {
@@ -42,7 +42,7 @@ int Fixed::getRawBits(void) const {
 }
 
 int Fixed::toInt(void) const{
-    return (fixed / (1 << fraction));
+    return (fixed >> fraction);
 }
 
 float Fixed::toFloat(void) const{

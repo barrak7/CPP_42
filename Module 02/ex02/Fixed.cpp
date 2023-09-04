@@ -32,13 +32,13 @@ Fixed& Fixed::operator=(const Fixed& obj){
 }
 
 //setter & getter
-void Fixed::setRawBits(int i){
-    fixed = i;
+void Fixed::setRawBits(int n){
+    fixed = n;
 }
  
 int Fixed::getRawBits(void) const {
     return fixed;
-}
+} 
 
 //to int and to float functions
 int Fixed::toInt(void) const{
@@ -58,89 +58,65 @@ std::ostream& operator<<(std::ostream& out, const Fixed& obj){
 
 
 //comparison operators overloading
-bool Fixed::operator<(const Fixed& obj){
-    if (fixed < obj.fixed)
-        return true;
-    return false;
+bool Fixed::operator<(const Fixed& obj) const {
+    return (fixed < obj.fixed);
 }
 
-bool Fixed::operator<=(const Fixed& obj){
-    if (fixed <= obj.fixed)
-        return true;
-    return false;    
+bool Fixed::operator<=(const Fixed& obj) const{
+    return (fixed <= obj.fixed); 
 }
 
-bool Fixed::operator>(const Fixed& obj){
-    if (fixed > obj.fixed)
-        return true;
-    return false;    
+bool Fixed::operator>(const Fixed& obj) const{
+    return (fixed > obj.fixed);  
 }
 
-bool Fixed::operator>=(const Fixed& obj){
-    if (fixed >= obj.fixed)
-        return true;
-    return false;    
+bool Fixed::operator>=(const Fixed& obj) const{
+    return (fixed >= obj.fixed);  
 }
 
-bool Fixed::operator==(const Fixed& obj){
-    if (fixed == obj.fixed)
-        return true;
-    return false;    
+bool Fixed::operator==(const Fixed& obj) const{
+    return (fixed == obj.fixed);  
 }
 
-bool Fixed::operator!=(const Fixed& obj){
-    if (fixed != obj.fixed)
-        return true;
-    return false;    
+bool Fixed::operator!=(const Fixed& obj) const{
+    return (fixed != obj.fixed); 
 }
 
 
 //arithmetic operators overloading
-Fixed Fixed::operator*(const Fixed& obj){
+Fixed Fixed::operator*(const Fixed& obj) const{
     Fixed new_obj;
     new_obj.fixed = (fixed * obj.fixed) >> fraction;
     return new_obj;
 }
 
-Fixed Fixed::operator/(const Fixed& obj){
+Fixed Fixed::operator/(const Fixed& obj) const{
     Fixed new_obj;
     new_obj.fixed = (fixed / obj.fixed) << fraction;
     return new_obj;
 }
 
-Fixed Fixed::operator+(const Fixed& obj){
+Fixed Fixed::operator+(const Fixed& obj) const{
     Fixed new_obj;
     new_obj.fixed = fixed + obj.fixed;
     return new_obj;
 }
 
-Fixed Fixed::operator-(const Fixed& obj){
+Fixed Fixed::operator-(const Fixed& obj) const{
     Fixed new_obj;
     new_obj.fixed = fixed - obj.fixed;
     return new_obj;
 }
 
 //min & max functions
-Fixed& Fixed::min(Fixed& f1, Fixed& f2){
-    if (f1.fixed < f2.fixed)
-        return f1;
-    return f2;
-} 
-
 const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2){
-    if (f1.fixed < f2.fixed)
-        return f1;
-    return f2; 
-}
-
-Fixed& Fixed::max(Fixed& f1, Fixed& f2){
-    if (f1.fixed > f2.fixed)
+    if (f1 < f2)
         return f1;
     return f2;
 } 
 
 const Fixed& Fixed::max(const Fixed& f1, const Fixed& f2){
-    if (f1.fixed > f2.fixed)
+    if (f1 > f2)
         return f1;
     return f2; 
 }
