@@ -39,7 +39,6 @@ void ClapTrap::attack(const std::string &target){
     } 
     std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << damage << " points of damage!\n";
     energy--;
-    hit--;
 }
 
 void ClapTrap::beRepaired(unsigned int amount){

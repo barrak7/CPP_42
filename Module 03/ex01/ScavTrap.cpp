@@ -17,7 +17,7 @@ ScavTrap::ScavTrap(std::string Name){
 }
 
 ScavTrap::ScavTrap(ScavTrap& obj): ClapTrap(obj){
-    std::cout << "ScavTrap copy constructor!\n";
+    std::cout << "ScavTrap copy constructor!\n"; 
 }
 
 ScavTrap& ScavTrap::operator=(ScavTrap& obj){
