@@ -1,4 +1,4 @@
-SRC=Dog.cpp Cat.cpp Animal.cpp main.cpp
+SRC=Dog.cpp Cat.cpp Animal.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 OBJ=$(SRC:.cpp=.o)
 CXX=c++
 CXXFLAGS=-Wall -Wextra -Werror -g -std=c++98

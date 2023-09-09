@@ -1,6 +1,7 @@
 #include "Character.hpp"
 
 Character::Character(){
+    std::cout << "Character default constructor\n";
     trash = 0;
     head = 0;
     name = "Default";
@@ -9,6 +10,7 @@ Character::Character(){
 }
 
 Character::Character(std::string str){
+    std::cout << "Character parameterized constructor\n";
     trash = 0;
     head = 0;
     name = str;
@@ -17,6 +19,7 @@ Character::Character(std::string str){
 }
 
 Character::Character(Character& obj): ICharacter(obj){
+    std::cout << "Character copy constructor\n";
     trash = 0;
     head = 0;
     name = obj.getName();
@@ -28,6 +31,7 @@ Character::Character(Character& obj): ICharacter(obj){
 }
 
 Character& Character::operator=(Character& obj){
+    std::cout << "Character assignment operator\n";
     if (&obj==this)
         return *this;
     name = obj.getName();
@@ -41,6 +45,7 @@ Character& Character::operator=(Character& obj){
 }
 
 Character::~Character(){
+    std::cout << "Character destructor\n";
     while (head){
         trash = head->next;
         delete head->ptr;
@@ -54,19 +59,25 @@ Character::~Character(){
 }
 
 void Character::equip(AMateria *m){
-    if (!m)
+    if (!m){
+        std::cout << "Character: AMateria ptr can't be NULL\n";
         return ;
+    }
     for (int i = 0; i < 4; i++){
         if (!inventory[i]){
             inventory[i] = m;
-            break ;
+            std::cout << "Equiped!\n";
+            return ;
         }
     }
+    std::cout << "Character already has 4 AMaterias\n";
 }
 
 void Character::unequip(int idx){
-    if (idx < 0 || idx>3 || !inventory[idx])
+    if (idx < 0 || idx>3 || !inventory[idx]){
+        std::cout << "Index out of range!\n";
         return ;
+    }
     if (trash == 0)
         head = trash = new t_trash;
     else{
@@ -76,11 +87,14 @@ void Character::unequip(int idx){
     trash->ptr = inventory[idx];
     trash->next = 0;
     inventory[idx] = 0;
+    std::cout << "Unequiped!\n";
 }
 
 void Character::use(int idx, ICharacter& target){
-    if (idx < 0 || idx > 3 || !inventory[idx])
+    if (idx < 0 || idx > 3 || !inventory[idx]){
+        std::cout << "Can't be used!\n";
         return;
+    }
     inventory[idx]->use(target);
 }
 

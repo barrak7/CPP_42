@@ -8,9 +8,11 @@ int main()
         new Cat(),
         new Cat("test"),
         new Dog(),
-        new Dog("random")
+        new Dog("random"),
+        new Cat("extra_cat"),
+        new Dog("More_dog")
     };
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 6; i++)
         delete arr[i];
     return 0;
 }
