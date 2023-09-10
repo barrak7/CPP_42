@@ -3,7 +3,7 @@
 Character::Character(){
     std::cout << "Character default constructor\n";
     trash = 0;
-    head = 0;
+    head = 0; 
     name = "Default";
     for (int i = 0; i < 4; i++)
         inventory[i] = 0;
