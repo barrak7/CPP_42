@@ -11,11 +11,11 @@ class ScalarConverter{
     static void print_float(std::string literal, double c, int v);
     static void print_double(std::string literal, double c, int v);
     static int followed_by_zero(std::string literal);
+    ScalarConverter();
+    ScalarConverter(ScalarConverter& obj);
+    ScalarConverter& operator=(ScalarConverter& obj);
+    ~ScalarConverter();
     public: 
-        ScalarConverter();
-        ScalarConverter(ScalarConverter& obj);
-        ScalarConverter& operator=(ScalarConverter& obj);
-        ~ScalarConverter();
         static void convert(std::string literal);
 };
 

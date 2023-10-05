@@ -11,12 +11,12 @@ struct Data {
     char        c;
 };
 
-class Serializer{ 
+class Serializer{
+    Serializer();
+    Serializer(Serializer &obj);
+    ~Serializer();
+    Serializer& operator=(Serializer& obj);
     public:
-        Serializer();
-        Serializer(Serializer &obj);
-        ~Serializer();
-        Serializer& operator=(Serializer& obj);
         static uintptr_t serialize(Data* ptr);
         static Data*     deserialize(uintptr_t raw);
 };

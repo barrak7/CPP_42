@@ -69,7 +69,7 @@ int main(){
     delete ptr;
     sleep(1);
     ptr = generate();
-    identify(*ptr);
+    identify(*ptr); 
     delete ptr;
     return 0;
 }

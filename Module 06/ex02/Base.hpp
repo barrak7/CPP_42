@@ -6,9 +6,6 @@
 class Base{
     public:
         virtual ~Base();
-        Base* generate(void);
-        void indetify(Base* p);
-        void identify(Base& p);
 };
 
 #endif
