@@ -1,9 +1,9 @@
-SRC=main.cpp
+SRC=main.cpp Span.cpp
 OBJ=$(SRC:.cpp=.o)
-HEADER=easyfind.hpp
+HEADER=Span.hpp
 CXX=c++
 CXXFLAGS=-Wall -Wextra -Werror -std=c++98
-NAME=temp
+NAME=Span
 
 .PHONY:all re fclean clean
 
