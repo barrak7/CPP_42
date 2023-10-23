@@ -10,54 +10,16 @@ int int_len(int n){
         i++;
     }
     return i;
-}
-
-std::vector<int> str_pars(std::string str){
-    std::string      tmp;
-    std::vector<int> vec;
-    size_t           i = 0;
-    int              tmp_len;
-    int              re;
-
-    for (;i < str.length(); i++){
-        while(str[i] == ' ')
-            i++;
-        while (str[i] != ' ' && str[i] != '\0')
-            tmp.push_back(str[i++]);
-        tmp_len = tmp.length();
-        if (tmp[0] == '+')
-            tmp_len--;
-        re = atoi(tmp.c_str());
-        if (int_len(re) != tmp_len){
-            std::cout << "Error: Invalid integer " << tmp << std::endl;
-            exit(1);
-        }
-        vec.push_back(re);
-        tmp.clear();
-    }
-    return vec;
-}
+} 
 
 std::vector<int> insertSort(std::vector<int> left, std::vector<int> right){
-    std::vector<int>            re;
-    std::vector<int>::iterator  li = left.begin();
     std::vector<int>::iterator  ri = right.begin();
 
-    while (li != left.end() && ri != right.end()){
-        if (*li < *ri){
-            re.push_back(*li);
-            li++;
-        }
-        else{
-            re.push_back(*ri);
-            ri++;
-        }
-    }
-    for (;li != left.end(); li++)
-        re.push_back(*li);
-    for (;ri != right.end(); ri++)
-        re.push_back(*ri);
-    return re;
+    for (;ri != right.end(); ri++) 
+        left.insert(std::upper_bound(left.begin(), left.end(), *ri), *ri);
+
+    left.insert(left.end(), ri, right.end());
+    return left;
 }
 
 std::vector<int> mergSort(std::vector<int> vec){
@@ -70,10 +32,52 @@ std::vector<int> mergSort(std::vector<int> vec){
     return insertSort(left, right);
 }
 
-void PmergeMe_vec(std::string numbers){
-    std::vector<int> vec = str_pars(numbers);
+void PmergeMe_vec(char **numbers){
+    std::vector<int> vec;
+    std::clock_t   start, end;
 
-    vec = mergSort(vec);
+    str_pars(numbers, vec);
+    std::cout << "Before: ";
     for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
-        std::cout << *it << std::endl;
+        std::cout << *it << " ";
+    std::cout << std::endl;
+    start = std::clock(); 
+    vec = mergSort(vec);    
+    end = std::clock();
+    std::cout << "After: ";
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+        std::cout << *it << " ";    
+    std::cout << std::endl; 
+    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << 1000000.0 * (end - start) /  CLOCKS_PER_SEC << " us"<<std::endl;
+}
+
+std::list<int> insertSort(std::list<int> left, std::list<int> right){
+    std::list<int>::iterator  ri = right.begin();
+
+    for (;ri != right.end(); ri++)  
+        left.insert(std::upper_bound(left.begin(), left.end(), *ri), *ri);
+
+    left.insert(left.end(), ri, right.end());
+    return left;
+}
+
+std::list<int> mergSort(std::list<int> list){
+    if (list.size() <= 1)
+        return list;
+
+    std::list<int> right = mergSort(std::list<int>(list.begin(), std::next(list.begin(), list.size() / 2)));
+    std::list<int> left = mergSort(std::list<int>(std::next(list.begin(), list.size() / 2), list.end()));
+
+    return insertSort(left, right);
+}
+
+void PmergeMe_list(char **numbers){
+    std::list<int> list;
+    std::clock_t   start, end;
+    
+    str_pars(numbers, list);
+    start = std::clock();
+    list = mergSort(list);
+    end = std::clock();
+    std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << 1000000.0 * (end - start) /  CLOCKS_PER_SEC << " us"<<std::endl;
 }
