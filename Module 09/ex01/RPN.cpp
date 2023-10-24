@@ -19,6 +19,10 @@ void rpn(std::string in){
         else if (*it == ' ')
             continue ;
         else{
+            if (mystack.size() < 2){
+                std::cout << "Error" << std::endl;
+                exit(1);
+            }
             b = mystack.top();
             mystack.pop();
             a = mystack.top();
